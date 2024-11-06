@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EnglishTrain</string>
+
+    <string-array name="difficulty_levels">
+        <item>Легкий</item>
+        <item>Средний</item>
+        <item>Сложный</item>
+    </string-array>
+
+    <string-array name="question_counts">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+</resources>

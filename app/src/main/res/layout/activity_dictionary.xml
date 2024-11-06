@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#E0FFFF">
+
+    <!-- Верхняя панель с заголовком и кнопкой удаления -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Словарь"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
+
+        <Button
+            android:id="@+id/btn_delete_word"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:text="Удалить слово"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            />
+    </LinearLayout>
+
+    <!-- Поле поиска -->
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Поиск слова"
+        android:layout_weight="1"
+        android:padding="0dp"
+        android:backgroundTint="#E0E0E0"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:inputType="text"
+        android:textColor="#333333"
+        android:textColorHint="#888888" />
+
+    <!-- Разделитель -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="2dp"/>
+
+    <!-- Заголовки для колонок слов -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Английский"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Русский"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- RecyclerView для списка слов -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"
+        android:background="#FFFFFF" />
+
+    <!-- Поля для добавления новых слов -->
+    <EditText
+        android:id="@+id/et_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Слово на английском"
+        android:layout_weight="0.5"
+        android:backgroundTint="#E0E0E0"
+        android:textColor="#333333"
+        android:textColorHint="#888888" />
+
+    <EditText
+        android:id="@+id/et_translation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Перевод на русский"
+        android:layout_weight="0.5"
+        android:backgroundTint="#E0E0E0"
+        android:layout_marginBottom="4dp"
+        android:textColor="#333333"
+        android:textColorHint="#888888" />
+
+    <Spinner
+        android:id="@+id/spinner_difficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:backgroundTint="#E0E0E0"
+        android:layout_marginBottom="4dp"
+        android:entries="@array/difficulty_levels" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="1dp">
+
+        <Button
+            android:id="@+id/btn_add_word"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Добавить слово"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="8dp"
+            />
+
+        <Button
+            android:id="@+id/button_back_to_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Назад"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+</LinearLayout>

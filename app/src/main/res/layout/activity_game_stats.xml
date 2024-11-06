@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#E0FFFF">
+    <!-- Подробности игры -->
+    <TextView
+        android:id="@+id/history_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="История игр"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="0.5"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_game_history"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tv_game_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Подробности игры"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
+
+        android:layout_weight="5"
+        />
+
+    <Button
+        android:id="@+id/btn_back_to_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:text="Назад"
+        android:backgroundTint="#3F51B5"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
