@@ -130,11 +130,11 @@
     <Spinner
         android:id="@+id/spinner_difficulty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_weight="0.5"
-        android:backgroundTint="#E0E0E0"
         android:layout_marginBottom="4dp"
-        android:entries="@array/difficulty_levels" />
+        android:entries="@array/difficulty_levels"
+        android:background="@drawable/spinner_background"/>
 
 
     <LinearLayout

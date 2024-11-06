@@ -15,17 +15,19 @@
     <Spinner
         android:id="@+id/spinner_difficulty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginBottom="16dp"
-        android:entries="@array/difficulty_levels"/>
+        android:entries="@array/difficulty_levels"
+        android:background="@drawable/spinner_background"/>
 
 
     <Spinner
         android:id="@+id/spinner_question_count"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginBottom="16dp"
         android:entries="@array/question_counts"
+        android:background="@drawable/spinner_background"
         />
 
     <Button
