@@ -64,7 +64,7 @@ class QuizGameActivity : AppCompatActivity() {
             Toast.makeText(this, "Игра окончена! Правильных ответов: $correctAnswers", Toast.LENGTH_LONG).show()
             saveGameHistory()
             Handler().postDelayed({
-            finish()
+                finish()
             }, 2000)
             return
         }
@@ -82,11 +82,17 @@ class QuizGameActivity : AppCompatActivity() {
             findViewById(R.id.btn_option_4)
         )
 
+        // Отключаем все кнопки до выбора
+        buttons.forEach { it.isEnabled = true }
+
         buttons.forEachIndexed { index, button ->
             button.text = options[index].english
             button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
             button.setOnClickListener {
                 val isCorrect = options[index] == correctWord
+                // Отключаем все кнопки после первого выбора
+                buttons.forEach { it.isEnabled = false }
+
                 if (isCorrect) {
                     correctAnswers++
                     button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
@@ -96,9 +102,11 @@ class QuizGameActivity : AppCompatActivity() {
 
                 // Ожидание 1 секунду перед следующим вопросом
                 Handler().postDelayed({
-                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
+                    // Сбрасываем цвет кнопок
+                    buttons.forEach { it.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray)) }
                     questionsAsked++
                     currentQuestionIndex++
+                    // Переходим к следующему вопросу
                     showNextQuestion()
                 }, 1000)
             }
@@ -118,7 +126,7 @@ class QuizGameActivity : AppCompatActivity() {
         // Скрыть изображение через 1 секунду
         Handler().postDelayed({
             ivResultImage.visibility = ImageView.GONE
-        }, 4000)
+        }, 3000)
     }
 
     private fun saveGameHistory() {
