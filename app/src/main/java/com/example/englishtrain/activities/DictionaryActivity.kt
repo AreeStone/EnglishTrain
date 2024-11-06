@@ -88,6 +88,10 @@ class DictionaryActivity : ComponentActivity() {
     }
 
     private fun updateWordList() {
+        // Сохраняем текущую позицию прокрутки
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+        val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()
+
         val words = dbHelper.getAllWords()
         wordAdapter = WordAdapter(
             words,
@@ -105,7 +109,13 @@ class DictionaryActivity : ComponentActivity() {
             }
         )
         recyclerView.adapter = wordAdapter
+
+        // Восстанавливаем позицию прокрутки
+        recyclerView.post {
+            layoutManager.scrollToPositionWithOffset(firstVisiblePosition, 0)
+        }
     }
+
 
     private fun filterWordList(query: String) {
         val words = dbHelper.getAllWords()
