@@ -1,5 +1,6 @@
 package com.example.englishtrain.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -14,6 +15,7 @@ import android.widget.Spinner
 import com.example.englishtrain.DictionaryDbHelper
 import com.example.englishtrain.MainActivity
 import com.example.englishtrain.R
+import com.example.englishtrain.Word
 import com.example.englishtrain.adapters.WordAdapter
 import java.util.*
 
@@ -104,10 +106,14 @@ class DictionaryActivity : ComponentActivity() {
                 playWordAndTranslation(english, russian)
             },
             onLearnedStatusChanged = { wordId, isLearned ->
-                dbHelper.updateWordLearnedStatus(wordId, isLearned) // Обновляем статус изучения в базе
+                dbHelper.updateWordLearnedStatus(wordId, isLearned)
                 updateWordList()
+            },
+            onEditClick = { word ->
+                showEditWordDialog(word)  // Вызов диалога редактирования
             }
         )
+
         recyclerView.adapter = wordAdapter
 
         // Восстанавливаем позицию прокрутки
@@ -140,4 +146,29 @@ class DictionaryActivity : ComponentActivity() {
         tts.stop()
         tts.shutdown()
     }
+    private fun showEditWordDialog(word: Word) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_edit_word, null)
+        val etEditEnglish = dialogView.findViewById<EditText>(R.id.et_edit_english)
+        val etEditRussian = dialogView.findViewById<EditText>(R.id.et_edit_russian)
+        val spinnerEditDifficulty = dialogView.findViewById<Spinner>(R.id.spinner_edit_difficulty)
+
+        etEditEnglish.setText(word.english)
+        etEditRussian.setText(word.russian)
+        spinnerEditDifficulty.setSelection(word.difficulty - 1)
+
+        AlertDialog.Builder(this)
+            .setTitle("Редактировать слово")
+            .setView(dialogView)
+            .setPositiveButton("Сохранить") { _, _ ->
+                val newEnglish = etEditEnglish.text.toString()
+                val newRussian = etEditRussian.text.toString()
+                val newDifficulty = spinnerEditDifficulty.selectedItemPosition + 1
+
+                dbHelper.updateWordById(word.id, newEnglish, newRussian, word.isLearned, newDifficulty)
+                updateWordList()
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+
 }

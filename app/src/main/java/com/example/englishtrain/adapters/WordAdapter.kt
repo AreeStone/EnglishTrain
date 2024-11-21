@@ -16,7 +16,8 @@ class WordAdapter(
     private val isDeleteMode: Boolean,
     private val onDeleteClick: (Int) -> Unit,
     private val onPlayClick: (String, String) -> Unit,
-    private val onLearnedStatusChanged: (Int, Boolean) -> Unit
+    private val onLearnedStatusChanged: (Int, Boolean) -> Unit,
+    private val onEditClick: (Word) -> Unit  // Новый коллбэк для редактирования
 ) : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -53,6 +54,12 @@ class WordAdapter(
 
         holder.checkBoxLearned.setOnCheckedChangeListener { _, isChecked ->
             onLearnedStatusChanged(word.id, isChecked)
+        }
+
+        // Обработка долгого нажатия для вызова редактирования
+        holder.itemView.setOnLongClickListener {
+            onEditClick(word)  // Вызываем коллбэк редактирования
+            true
         }
     }
 

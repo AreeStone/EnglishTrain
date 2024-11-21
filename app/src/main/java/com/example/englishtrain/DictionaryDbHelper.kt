@@ -149,6 +149,19 @@ class DictionaryDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         db.close()
     }
 
+    fun updateWordById(id: Int, newEnglish: String, newRussian: String, newIsLearned: Boolean, newDifficulty: Int) {
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put(COLUMN_ENGLISH, newEnglish)
+            put(COLUMN_RUSSIAN, newRussian)
+            put(COLUMN_IS_LEARNED, if (newIsLearned) 1 else 0)
+            put(COLUMN_DIFFICULTY, newDifficulty)
+        }
+        db.update(TABLE_WORDS, contentValues, "$COLUMN_ID = ?", arrayOf(id.toString()))
+        db.close()
+    }
+
+
     fun deleteWordById(id: Int) {
         val db = writableDatabase
         db.delete(TABLE_WORDS, "$COLUMN_ID = ?", arrayOf(id.toString()))
